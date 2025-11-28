@@ -30,7 +30,7 @@ export default function CustomDrawer(props: any) {
 
       {/* Imagen inferior */}
       <Image
-        source={require("../../assets/image/cart.png")}
+        source={require("../../assets/images/cart.png")}
         style={styles.bottomImage}
         resizeMode="contain"
       />
