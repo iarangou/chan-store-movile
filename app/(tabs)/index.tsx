@@ -1,98 +1,162 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import { DrawerToggleButton } from "@react-navigation/drawer";
+import React, { useState } from "react";
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import RightCartMenu from "../../components/RightCartMenu";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+export default function Home() {
+  const [showCart, setShowCart] = useState(false);
 
-export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View style={styles.container}>
+      {/* ----- MENU CARRITO DESLIZABLE ----- */}
+      <RightCartMenu visible={showCart} onClose={() => setShowCart(false)} />
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      {/* ----- ENCABEZADO SUPERIOR ----- */}
+      <View style={styles.header}>
+        
+        {/* Botón menú IZQUIERDO */}
+        <TouchableOpacity style={styles.menuButton}>
+          <DrawerToggleButton tintColor="#fff" />
+        </TouchableOpacity>
+
+        {/* Logo carrito del header */}
+        <Image
+          source={require("../../assets/image/cart.png")}
+          style={styles.headerIcon}
+        />
+
+        {/* Barra de búsqueda */}
+        <View style={styles.searchBox}>
+          <Ionicons name="search" size={18} color="#555" style={{ marginRight: 6 }} />
+          <TextInput 
+            placeholder="Search"
+            placeholderTextColor="#777"
+            style={styles.searchInput}
+          />
+        </View>
+
+        {/* Botón carrito DERECHO */}
+        <TouchableOpacity onPress={() => setShowCart(true)}>
+          <Ionicons name="cart" size={28} color="#fff" />
+        </TouchableOpacity>
+      </View>
+
+      {/* ----- CONTENIDO SCROLLEABLE ----- */}
+      <ScrollView style={styles.scroll}>
+
+        {/* --- SECCIÓN TOP SALE --- */}
+        <Section title="TOP SALE" />
+
+        {/* Carrusel 1 */}
+        <Carousel />
+
+        {/* --- SECCIÓN SUGERIDOS --- */}
+        <Section title="Sugeridos" />
+
+        <Carousel />
+
+        {/* --- SECCIÓN CATEGORÍA --- */}
+        <Section title="Categoria" />
+
+        <Carousel />
+
+      </ScrollView>
+    </View>
   );
 }
 
+/* ------------------------------ */
+/* COMPONENTE SECCIÓN (TÍTULO)    */
+/* ------------------------------ */
+function Section({ title }: any) {
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      <View style={styles.line} />
+    </View>
+  );
+}
+
+/* ------------------------------ */
+/* COMPONENTE CARRUSEL DE PRODUCTOS */
+/* ------------------------------ */
+function Carousel() {
+  return (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={{ marginBottom: 20 }}
+    >
+      {[1,2,3,4].map((item) => (
+        <View key={item} style={styles.productCard}>
+          <View style={styles.productImage} />
+          <Text style={styles.productLabel}>producto</Text>
+          <Text style={styles.price}>$$$</Text>
+        </View>
+      ))}
+    </ScrollView>
+  );
+}
+
+/* ------------------------------ */
+/* ESTILOS                        */
+/* ------------------------------ */
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: { flex: 1, backgroundColor: "#fff" },
+
+  /* HEADER */
+  header: {
+    backgroundColor: "#0F2A50",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingTop: 45,
+    paddingBottom: 12,
+    justifyContent: "space-between",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  menuButton: { width: 35 },
+  headerIcon: { width: 38, height: 38, tintColor: "#fff" },
+
+  searchBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    height: 34,
+    flex: 1,
+    marginHorizontal: 10,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  searchInput: { flex: 1, fontSize: 14, color: "#333" },
+
+  scroll: { paddingHorizontal: 12 },
+
+  /* SECTIONS */
+  section: { marginTop: 20, marginBottom: 10 },
+  sectionTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#000",
   },
+  line: {
+    height: 1,
+    backgroundColor: "#000",
+    marginTop: 4,
+    width: "40%",
+  },
+
+  /* PRODUCTOS */
+  productCard: {
+    width: 130,
+    marginRight: 12,
+  },
+  productImage: {
+    width: "100%",
+    height: 110,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 6,
+  },
+  productLabel: { fontWeight: "600", marginTop: 6, color: "#333" },
+  price: { fontWeight: "700", color: "#000" },
 });
