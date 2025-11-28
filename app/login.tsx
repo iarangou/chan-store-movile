@@ -43,7 +43,11 @@ export default function Login() {
           <Text style={styles.secondaryButtonText}>Registrarse</Text>
         </TouchableOpacity>
 
-        <Text style={styles.forgotText}>¿Olvidó su contraseña?</Text>
+        {/* Olvido su contraseña */}
+        <TouchableOpacity onPress={() => router.push("/recover-password")}>
+          <Text style={styles.link}>¿Olvidó su contraseña?</Text>
+        </TouchableOpacity>
+
 
       </View>
     </View>
@@ -51,6 +55,12 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+  link: {
+  marginTop: 12,
+  color: "#333",
+  fontSize: 14,
+  textAlign: "center",
+},
   screenContainer: {
     flex: 1,
     backgroundColor: "#ffffff",
