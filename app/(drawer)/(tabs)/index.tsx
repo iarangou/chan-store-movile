@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
+
 
 export default function Home() {
   const [showCart, setShowCart] = useState(false);
@@ -89,11 +91,17 @@ function Carousel() {
       style={{ marginBottom: 20 }}
     >
       {[1,2,3,4].map((item) => (
-        <View key={item} style={styles.productCard}>
+        <TouchableOpacity
+          key={item}
+          style={styles.productCard}
+          onPress={() => router.push(`../(drawer)/product/${item}`)}
+        >
+
           <View style={styles.productImage} />
           <Text style={styles.productLabel}>producto</Text>
           <Text style={styles.price}>$$$</Text>
-        </View>
+        </TouchableOpacity>
+
       ))}
     </ScrollView>
   );

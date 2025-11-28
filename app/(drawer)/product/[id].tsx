@@ -3,7 +3,7 @@ import { DrawerToggleButton } from "@react-navigation/drawer";
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import RightCartMenu from "../../components/RightCartMenu";
+import RightCartMenu from "../../../components/RightCartMenu";
 
 export default function ProductPage() {
   const { id } = useLocalSearchParams();
@@ -26,7 +26,7 @@ export default function ProductPage() {
 
         {/* Icono carrito arriba */}
         <Image
-          source={require("../../assets/images/cart.png")}
+          source={require("../../../assets/images/cart.png")}
           style={styles.headerIcon}
         />
 

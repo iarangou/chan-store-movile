@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
 
+
 export default function Profile() {
   const [showCart, setShowCart] = useState(false);
 
