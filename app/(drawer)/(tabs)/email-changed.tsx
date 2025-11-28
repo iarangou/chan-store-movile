@@ -7,9 +7,9 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import RightCartMenu from "../../components/RightCartMenu";
+import RightCartMenu from "../../../components/RightCartMenu";
 
-export default function PasswordChanged() {
+export default function EmailChanged() {
   const [showCart, setShowCart] = useState(false);
 
   return (
@@ -18,23 +18,21 @@ export default function PasswordChanged() {
       {/* Menú derecho */}
       <RightCartMenu visible={showCart} onClose={() => setShowCart(false)} />
 
-      {/* -------- HEADER -------- */}
+      {/* ---------------- HEADER ---------------- */}
       <View style={styles.header}>
         <DrawerToggleButton tintColor="#fff" />
-
-        <Ionicons name="cart-outline" size={32} color="#fff" />
-
+        <Ionicons name="mail-outline" size={32} color="#fff" />
         <TouchableOpacity onPress={() => setShowCart(true)}>
           <Ionicons name="cart" size={28} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      {/* -------- CONTENIDO -------- */}
+      {/* ---------------- CONTENIDO ---------------- */}
       <View style={styles.centerBox}>
 
         <View style={styles.card}>
           <Text style={styles.message}>
-            Su cambio de contraseña ha sido exitoso
+            Su cambio de correo ha sido exitoso
           </Text>
 
           <TouchableOpacity style={styles.button}>
@@ -43,11 +41,12 @@ export default function PasswordChanged() {
         </View>
 
       </View>
+
     </View>
   );
 }
 
-/* -------- ESTILOS -------- */
+/* ---------------- ESTILOS ---------------- */
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
 
-  /* Caja que centra todo */
+  /* Centrado */
   centerBox: {
     flex: 1,
     justifyContent: "center",
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  /* Tarjeta de confirmación */
+  /* Tarjeta blanca */
   card: {
     backgroundColor: "#fff",
     padding: 20,
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
-  /* Botón */
   button: {
     backgroundColor: "#4C8DFF",
     paddingVertical: 12,

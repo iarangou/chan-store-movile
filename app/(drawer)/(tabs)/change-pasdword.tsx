@@ -9,70 +9,90 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import RightCartMenu from "../../components/RightCartMenu";
+import RightCartMenu from "../../../components/RightCartMenu";
 
-export default function ChangeEmail() {
+export default function ChangePassword() {
   const [showCart, setShowCart] = useState(false);
 
-  const [email1, setEmail1] = useState("");
-  const [email2, setEmail2] = useState("");
+  const [oldPass, setOldPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   return (
     <View style={styles.container}>
-      
-      {/* Carrito */}
+
+      {/* Carrito derecho */}
       <RightCartMenu visible={showCart} onClose={() => setShowCart(false)} />
 
-      {/* ---------------- HEADER ---------------- */}
+      {/* -------------- HEADER -------------- */}
       <View style={styles.header}>
         <DrawerToggleButton tintColor="#fff" />
 
-        <Text style={styles.headerTitle}>Cambio Correo</Text>
+        <Text style={styles.headerTitle}>Cambio Contraseña</Text>
 
         <TouchableOpacity onPress={() => setShowCart(true)}>
           <Ionicons name="cart" size={28} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      {/* ---------------- CONTENIDO ---------------- */}
+      {/* -------------- CONTENIDO -------------- */}
       <ScrollView contentContainerStyle={styles.content}>
 
-        {/* Título */}
-        <Text style={styles.title}>Cambio Correo</Text>
+        {/* TÍTULO GRANDE */}
+        <Text style={styles.title}>
+          Cambio{"\n"}Contraseña
+        </Text>
 
-        {/* Nuevo correo */}
-        <Text style={styles.label}>Nuevo Correo</Text>
+        {/* CONTRASEÑA ACTUAL */}
+        <Text style={styles.label}>Contraseña Actual</Text>
+
         <TextInput
-          placeholder="Escriba aqui su nuevo correo"
+          placeholder="Escriba aqui su contraseña"
           placeholderTextColor="#777"
+          secureTextEntry
           style={styles.input}
-          keyboardType="email-address"
-          value={email1}
-          onChangeText={setEmail1}
+          value={oldPass}
+          onChangeText={setOldPass}
         />
 
-        {/* Confirmar correo */}
-        <Text style={styles.label}>Confirme Correo</Text>
+        <TouchableOpacity>
+          <Text style={styles.forgotLink}>¿Olvido contraseña?</Text>
+        </TouchableOpacity>
+
+        {/* NUEVA CONTRASEÑA */}
+        <Text style={styles.label}>Nueva Contraseña</Text>
+
         <TextInput
-          placeholder="Escriba aqui su nuevo correo"
+          placeholder="Escriba aqui su nueva contraseña"
           placeholderTextColor="#777"
+          secureTextEntry
           style={styles.input}
-          keyboardType="email-address"
-          value={email2}
-          onChangeText={setEmail2}
+          value={newPass}
+          onChangeText={setNewPass}
         />
 
-        {/* Botón Actualizar */}
+        {/* CONFIRMAR CONTRASEÑA */}
+        <Text style={styles.label}>Confirme Contraseña</Text>
+
+        <TextInput
+          placeholder="Escriba aqui su nueva contraseña"
+          placeholderTextColor="#777"
+          secureTextEntry
+          style={styles.input}
+          value={confirmPass}
+          onChangeText={setConfirmPass}
+        />
+
+        {/* BOTÓN */}
         <TouchableOpacity style={styles.updateButton}>
           <Text style={styles.updateButtonText}>Actualizar</Text>
         </TouchableOpacity>
-
       </ScrollView>
     </View>
   );
 }
 
-/* ---------------- ESTILOS ---------------- */
+/* ----------------- ESTILOS ----------------- */
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff" },
@@ -117,20 +137,28 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     color: "#333",
+  },
+
+  forgotLink: {
+    color: "#4C8DFF",
+    fontSize: 14,
+    marginTop: 6,
     marginBottom: 20,
+    textDecorationLine: "underline",
   },
 
   updateButton: {
     backgroundColor: "#4C8DFF",
     paddingVertical: 14,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 30,
+    marginBottom: 40,
   },
 
   updateButtonText: {
-    textAlign: "center",
     color: "#fff",
     fontSize: 16,
     fontWeight: "700",
+    textAlign: "center",
   },
 });

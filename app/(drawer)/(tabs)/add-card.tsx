@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import RightCartMenu from "../../components/RightCartMenu";
+import RightCartMenu from "../../../components/RightCartMenu";
 
 export default function AddCard() {
   const [showCart, setShowCart] = useState(false);
