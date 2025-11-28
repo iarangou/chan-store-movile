@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
@@ -58,12 +59,10 @@ export default function Profile() {
         </View>
 
         {/* BOTONES */}
-        <View style={styles.buttonsContainer}>
-          <Button label="Metodos de pago" />
-          <Button label="Actualizar datos" />
-          <Button label="Cambiar correo" />
-          <Button label="Cambiar contraseña" />
-        </View>
+        <Button label="Métodos de pago" href="/(drawer)/(tabs)/payment-methods" />
+        <Button label="Actualizar datos" href="/(drawer)/(tabs)/update-data" />
+        <Button label="Cambiar correo" href="/(drawer)/(tabs)/change-email" />
+        <Button label="Cambiar contraseña" href="/(drawer)/(tabs)/change-password" />
 
       </ScrollView>
     </View>
@@ -71,13 +70,18 @@ export default function Profile() {
 }
 
 /* COMPONENTE REUTILIZABLE PARA LOS BOTONES */
-function Button({ label }: any) {
+function Button({ label, href }: any) {
   return (
-    <TouchableOpacity style={styles.actionButton}>
+    <TouchableOpacity 
+      style={styles.actionButton}
+      onPress={() => router.push(href)}
+    >
       <Text style={styles.actionButtonText}>{label}</Text>
     </TouchableOpacity>
   );
 }
+
+
 
 /* ESTILOS */
 const styles = StyleSheet.create({
@@ -107,8 +111,10 @@ const styles = StyleSheet.create({
   /* CONTENIDO */
   content: {
     backgroundColor: "#7EB6FF",
-    paddingBottom: 40,
+    paddingBottom: 300,
+    alignItems: "center",    // ← AGREGA ESTO
   },
+
 
   curvedBackground: {
     backgroundColor: "#7EB6FF",
@@ -119,18 +125,18 @@ const styles = StyleSheet.create({
 
   whiteCurve: {
     position: "absolute",
-    top: 80,
+    top: 0,
     width: "130%",
-    height: 140,
+    height: 460,
     backgroundColor: "#fff",
     borderBottomLeftRadius: 200,
     borderBottomRightRadius: 200,
   },
 
   avatar: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 220,
+    height: 220,
+    borderRadius: 130,
     borderWidth: 4,
     borderColor: "#fff",
     marginTop: -20,
@@ -138,8 +144,8 @@ const styles = StyleSheet.create({
 
   infoBox: {
     alignItems: "center",
-    marginTop: 20,
-    marginBottom: 30,
+    marginTop: 40,
+    marginBottom: 50,
   },
 
   infoText: {
@@ -150,16 +156,21 @@ const styles = StyleSheet.create({
   },
 
   buttonsContainer: {
+    width: "100%",
     alignItems: "center",
-    gap: 14,
+    justifyContent: "center",
+    paddingVertical: 10,
   },
+
 
   actionButton: {
     backgroundColor: "#4C8DFF",
     width: "70%",
     paddingVertical: 12,
     borderRadius: 10,
+    marginBottom: 16,
   },
+
   actionButtonText: {
     color: "#fff",
     fontSize: 16,

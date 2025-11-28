@@ -1,9 +1,10 @@
+import { router } from "expo-router";
 import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from "react-native-reanimated";
 
 interface Props {
@@ -71,7 +72,13 @@ export default function RightCartMenu({ visible, onClose }: Props) {
         </View>
 
         {/* Check Out */}
-        <TouchableOpacity style={styles.checkoutButton}>
+        <TouchableOpacity 
+          style={styles.checkoutButton}
+          onPress={() => {
+            onClose();                    // cierra el menú del carrito
+            router.push("/(drawer)/(tabs)/checkout");   // ← tu ruta
+          }}
+        >
           <Text style={styles.checkoutText}>Check out</Text>
         </TouchableOpacity>
 
@@ -84,7 +91,10 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: "row",
+    zIndex: 9999,        
+    elevation: 99,       
   },
+
   backdrop: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.35)",
