@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import React, { useState } from "react";
+
 import {
   Image,
   ScrollView,
@@ -52,23 +54,30 @@ export default function MyStore() {
 
         {/* BOTONES */}
         <View style={styles.buttonsContainer}>
-          <Button label="Editar datos" />
-          <Button label="Mis productos" />
-          <Button label="Gestionar ordenes" />
+          <Button label="Editar datos" href="/(drawer)/(tabs)/store/StoreEditData" />
+          <Button label="Mis productos" href="/(drawer)/(tabs)/store/StoreProducts" />
+          <Button label="Gestionar ordenes" href="/(drawer)/(tabs)/store/StoreManageOrders" />
         </View>
+
 
       </ScrollView>
     </View>
   );
 }
 
-function Button({ label }: { label: string }) {
+function Button({ label, href }: any) {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => router.push(href)}
+    >
       <Text style={styles.buttonText}>{label}</Text>
     </TouchableOpacity>
   );
 }
+
+
+
 
 /* ---------------- ESTILOS ---------------- */
 

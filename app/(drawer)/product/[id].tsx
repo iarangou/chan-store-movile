@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
+
 
 export default function ProductPage() {
   const { id } = useLocalSearchParams();
@@ -109,11 +110,15 @@ export default function ProductPage() {
           style={{ marginBottom: 20 }}
         >
           {[1, 2, 3].map((item) => (
-            <View key={item} style={styles.suggestCard}>
+            <TouchableOpacity
+              key={item}
+              style={styles.suggestCard}
+              onPress={() => router.push(`/(drawer)/product/${item}`)}
+            >
               <View style={styles.suggestImage} />
               <Text style={styles.suggestLabel}>producto</Text>
               <Text style={styles.suggestPrice}>$$$</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
 

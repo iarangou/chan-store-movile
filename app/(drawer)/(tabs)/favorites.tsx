@@ -1,6 +1,7 @@
 import RightCartMenu from "@/components/RightCartMenu";
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import React, { useState } from "react";
 
 import {
@@ -14,7 +15,7 @@ import {
 export default function Favorites() {
   const [showCart, setShowCart] = useState(false);
 
-  // 🔹 Ejemplo de favoritos (luego vendrá del backend)
+  // Ejemplo de favoritos (luego vendrá del backend)
   const favorites = [
     { id: 1, name: "Nombre artículo", desc: "Descripción", price: "$50.000" },
     { id: 2, name: "Nombre artículo", desc: "Descripción", price: "$80.000" },
@@ -41,15 +42,19 @@ export default function Favorites() {
       {/* LISTA DE FAVORITOS */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {favorites.map((item) => (
-          <TouchableOpacity key={item.id} style={styles.card}>
-            <View style={styles.imagePlaceholder} />
-            <View style={styles.infoBox}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.description}>{item.desc}</Text>
-              <Text style={styles.price}>{item.price}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+          <TouchableOpacity
+            key={item.id}
+            style={styles.card}
+            onPress={() => router.push(`/(drawer)/product/${item.id}`)}
+          >
+        <View style={styles.imagePlaceholder} />
+        <View style={styles.infoBox}>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.description}>{item.desc}</Text>
+          <Text style={styles.price}>{item.price}</Text>
+        </View>
+      </TouchableOpacity>
+    ))}
       </ScrollView>
 
     </View>
