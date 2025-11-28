@@ -2,12 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import React, { useState } from "react";
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
 
@@ -39,7 +39,7 @@ export default function MyStore() {
           <View style={styles.whiteCurve} />
 
           <Image
-            source={require("../../assets/images/react-logo.png")} // Usa tu imagen real
+            source={require("../../../assets/images/react-logo.png")} // Usa tu imagen real
             style={styles.storeImage}
           />
         </View>

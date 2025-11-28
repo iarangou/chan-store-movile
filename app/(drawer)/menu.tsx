@@ -20,13 +20,14 @@ export default function CustomDrawer(props: any) {
 
       {/* Opciones */}
       <View style={styles.menuBox}>
-        <MenuItem icon="home-outline" title="Inicio" />
-        <MenuItem icon="person-outline" title="Perfil" />
-        <MenuItem icon="cart-outline" title="Pedidos" />
-        <MenuItem icon="storefront-outline" title="Mi tienda" />
-        <MenuItem icon="help-circle-outline" title="Ayuda" />
-        <MenuItem icon="heart-outline" title="Favoritos" />
+        <MenuItem icon="home-outline" title="Inicio" href="/(drawer)/(tabs)" />
+        <MenuItem icon="person-outline" title="Perfil" href="/(drawer)/(tabs)/profile" />
+        <MenuItem icon="cart-outline" title="Pedidos" href="/(drawer)/(tabs)/orders" />
+        <MenuItem icon="storefront-outline" title="Mi tienda" href="/(drawer)/(tabs)/my-store" />
+        <MenuItem icon="help-circle-outline" title="Ayuda" href="/(drawer)/(tabs)/FaqScreen" />
+        <MenuItem icon="heart-outline" title="Favoritos" href="/(drawer)/(tabs)/favorites" />
       </View>
+
 
       {/* Imagen inferior */}
       <Image
@@ -43,15 +44,19 @@ export default function CustomDrawer(props: any) {
   );
 }
 
-function MenuItem({ icon, title }: any) {
+function MenuItem({ icon, title, href }: any) {
   return (
-    <TouchableOpacity style={styles.menuItem}>
+    <TouchableOpacity 
+      style={styles.menuItem} 
+      onPress={() => router.push(href)}
+    >
       <Ionicons name={icon} size={22} color="black" />
       <Text style={styles.menuText}>{title}</Text>
       <Entypo name="chevron-right" size={20} color="black" />
     </TouchableOpacity>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

@@ -2,12 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import React, { useState } from "react";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import RightCartMenu from "../../../components/RightCartMenu";
 

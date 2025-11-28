@@ -21,7 +21,7 @@ export default function Profile() {
 
         {/* Icono logo carrito */}
         <Image
-          source={require("../../assets/images/cart.png")}
+          source={require("../../../assets/images/cart.png")}
           style={styles.headerIcon}
         />
 

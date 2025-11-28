@@ -22,7 +22,7 @@ export default function Home() {
 
         {/* Logo carrito del header */}
         <Image
-          source={require("../../assets/images/cart.png")}
+          source={require("../../../assets/images/cart.png")}
           style={styles.headerIcon}
         />
 
