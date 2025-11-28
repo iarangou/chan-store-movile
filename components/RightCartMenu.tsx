@@ -34,7 +34,7 @@ export default function RightCartMenu({ visible, onClose }: Props) {
         {/* Encabezado */}
         <View style={styles.header}>
           <Image
-            source={require("../assets/image/cart.png")}
+            source={require("../assets/images/cart.png")}
             style={styles.headerImage}
             resizeMode="contain"
           />
