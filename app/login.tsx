@@ -32,7 +32,7 @@ export default function Login() {
           />
 
           {/* Botón iniciar sesión */}
-          <TouchableOpacity style={styles.primaryButton} onPress={() => router.replace("(tabs)")}>
+          <TouchableOpacity style={styles.primaryButton} onPress={() => router.replace("/(tabs)")}>
             <Text style={styles.primaryButtonText}>Iniciar sesion</Text>
           </TouchableOpacity>
 
