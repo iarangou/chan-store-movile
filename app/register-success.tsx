@@ -12,7 +12,7 @@ export default function RegisterSuccess() {
 
       {/* Imagen */}
       <Image
-        source={require("../assets/image/cart.png")}
+        source={require("../assets/images/cart.png")}
         style={styles.image}
         resizeMode="contain"
       />

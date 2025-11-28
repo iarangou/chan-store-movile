@@ -39,7 +39,7 @@ export default function MyStore() {
           <View style={styles.whiteCurve} />
 
           <Image
-            source={require("../../assets/image/store.png")} // Usa tu imagen real
+            source={require("../../assets/images/store.png")} // Usa tu imagen real
             style={styles.storeImage}
           />
         </View>

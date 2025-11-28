@@ -58,7 +58,7 @@ export default function Register() {
 
       {/* Imagen inferior */}
       <Image
-        source={require("../assets/image/cart.png")} // usa tu imagen
+        source={require("../assets/images/cart.png")} // usa tu imagen
         style={styles.footerImage}
         resizeMode="contain"
       />

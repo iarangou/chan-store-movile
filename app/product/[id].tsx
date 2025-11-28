@@ -26,7 +26,7 @@ export default function ProductPage() {
 
         {/* Icono carrito arriba */}
         <Image
-          source={require("../../assets/image/cart.png")}
+          source={require("../../assets/images/cart.png")}
           style={styles.headerIcon}
         />
 
