@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { router } from "expo-router";
 import React, { useState } from "react";
+
 import {
   ScrollView,
   StyleSheet,
@@ -58,7 +60,7 @@ export default function StoreProducts() {
       <ScrollView contentContainerStyle={styles.content}>
 
         {/* BOTÓN AÑADIR */}
-        <TouchableOpacity style={styles.addItem}>
+        <TouchableOpacity style={styles.addItem} onPress={() => router.push("/(drawer)/(tabs)/store/StoreAddProduct")}>
           <View style={styles.addBox}>
             <Text style={styles.plus}>+</Text>
           </View>
@@ -68,7 +70,13 @@ export default function StoreProducts() {
 
         {/* LISTADO DE PRODUCTOS */}
         {products.map((item) => (
-          <View key={item.id} style={styles.productBox}>
+          <TouchableOpacity
+            key={item.id}
+            style={styles.productBox}
+            onPress={() =>
+              router.push(`/(drawer)/(tabs)/store/StoreEditProduct?id=${item.id}`)
+            }
+           >
             <View style={styles.imagePlaceholder} />
 
             <View style={styles.productInfo}>
@@ -77,8 +85,9 @@ export default function StoreProducts() {
               <Text style={styles.productPrice}>{item.price}</Text>
               <Text style={styles.productStock}>{item.stock}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
+
 
       </ScrollView>
     </View>

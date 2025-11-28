@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
+
 import {
   ScrollView,
   StyleSheet,
@@ -13,6 +15,7 @@ import RightCartMenu from "../../../../components/RightCartMenu";
 
 export default function StoreEditProduct() {
   const [showCart, setShowCart] = useState(false);
+  const { id } = useLocalSearchParams();
 
   // Simulación: datos que vienen del backend
   const [productName, setProductName] = useState("Nombre producto");
